@@ -9,7 +9,7 @@ export const userRouter = router({
     doUserSignUp: publicProcedure
     .input(z.object({name: z.string(), username: z.string(), email: z.string(), password: z.string()}))
     .mutation(async ({ctx, input}) => {
-        return await ctx.prisma.user.create({
+        const user = await ctx.prisma.user.create({
             data: {
                 name: input.name,
                 username: input.username,
@@ -17,5 +17,7 @@ export const userRouter = router({
                 password: input.password
             }
         })
+        console.log(user)
+        return user
     })
 })

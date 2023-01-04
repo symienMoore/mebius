@@ -5,8 +5,11 @@ import { trpc } from '../../utils/trpc'
 const Signin = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm()
     const user = trpc.user.doUserSignUp.useMutation({})
-    const onSubmit = () => {
-        console.log('test')
+    
+    
+    const onSubmit = (data: any) => {
+        user.mutate(data)
+        console.log(data)
     }
   return (
     <div>
